@@ -3,18 +3,21 @@
 ## Phase 1: private validation
 
 1. Convert a small set of strict local frames into the line-oriented hex format
-   accepted by `swannman/gridstream-protocol`.
-2. Run `tools/gridstream_parser.py` on individual frames.
-3. Run `tools/validate_protocol_doc.py` against a local log.
-4. Record agreements and disagreements in field boundaries, CRC treatment,
+   accepted by `swannman/gridstream-protocol` by restoring the omitted `80 FF`
+   sync bytes.
+2. Run `tools/gridstream_parser.py` on individual frames. Initial comparison
+   confirms matching family lengths and field positions.
+3. Compare CRC parameters. This identified local initialization `0xD2B8`, which
+   validates 1,782/1,782 strict frames, versus 0/1,782 for PSE's `0x142A`.
+4. Run the remaining protocol-document checks against a private normalized log.
+5. Record agreements and disagreements in field boundaries, CRC treatment,
    frame-family labels, timestamps, and counters.
-5. Keep all original identifiers and raw captures outside Git.
+6. Keep all original identifiers and raw captures outside Git.
 
-The comparison must account for possible differences in capture framing. Our
-decoder currently emits bytes beginning with the recovered Gridstream `0x2A`
-lead byte, whereas the reference parser's examples include additional framing.
-No automatic byte transformation should be assumed until verified against the
-reference parser and protocol document.
+The comparison confirms that our decoder emits frames beginning with the
+recovered Gridstream `0x2A` lead byte while the reference parser includes
+`80 FF` before `2A`. This normalization is structural only and does not alter
+the CRC-covered body.
 
 ## Phase 2: sanitized publication
 

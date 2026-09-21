@@ -12,6 +12,8 @@ electricity-load analysis.
 - 2,297 frames passed strict synchronization, UART-framing, and length checks.
 - 1,779 strict frames were attributed to the subject meter.
 - Six recurring frame families have been observed.
+- CRC-16/CCITT initialization `0xD2B8` validates all 1,782 strict frames tested;
+  the Puget Sound Energy deployment's reported `0x142A` seed validates none.
 - No instantaneous watts or cumulative kWh field has yet been established.
 
 The subject meter is identified only as `METER_ID`. Raw RF captures, actual RF
@@ -46,6 +48,8 @@ received at the research site. See [docs/PRIVACY.md](docs/PRIVACY.md).
 
 The staged technical comparison and researcher-contact sequence is documented
 in [docs/COLLABORATION_PLAN.md](docs/COLLABORATION_PLAN.md).
+The deployment-specific CRC finding is documented in
+[docs/CRC_VARIANT.md](docs/CRC_VARIANT.md).
 
 ## Related work
 

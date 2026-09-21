@@ -33,6 +33,13 @@ length.
 - A fixed source identifier at the expected field offset ties the strict frame
   set to the physical subject meter; that identifier is published only as
   `METER_ID`.
+- CRC-16/CCITT with polynomial `0x1021` and initialization `0xD2B8` validates
+  all 1,782 strict frames tested. The Washington/PSE initialization `0x142A`
+  validates none of them.
+- Restoring the omitted `80 FF` sync bytes aligns local frames with the
+  Washington reference parser's family lengths and structural field offsets.
+- The recurring local `1F 03` sequence is CRC-protected and is not a corrupted
+  decoding of the Washington deployment's commonly observed `09 03` sequence.
 - The longer status family contains fields consistent with Unix time and an
   uptime counter.
 - Narrowband capture observes only a subset of a frequency-hopping network.
