@@ -44,6 +44,9 @@ This project is receive-only. It does not transmit to, authenticate with, alter,
 or control utility infrastructure. Analysis is limited to over-the-air traffic
 received at the research site. See [docs/PRIVACY.md](docs/PRIVACY.md).
 
+The staged technical comparison and researcher-contact sequence is documented
+in [docs/COLLABORATION_PLAN.md](docs/COLLABORATION_PLAN.md).
+
 ## Related work
 
 - [`swannman/gridstream-protocol`](https://github.com/swannman/gridstream-protocol)
